@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amd-oct"
+version = "0.1.0"
+description = "Multimodal deep learning for AMD progression grading on MICCAI Task 2 OCT data"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Mohamed Benloughmari" }]
+keywords = ["oct", "amd", "medical-imaging", "pytorch", "ordinal-classification"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.0",
+    "torchvision>=0.15",
+    "numpy>=1.23",
+    "pandas>=1.5",
+    "pillow>=9.0",
+    "scikit-learn>=1.2",
+    "scipy>=1.9",
+    "tqdm>=4.64",
+    "hydra-core>=1.3",
+    "omegaconf>=2.3",
+    "kagglehub>=0.2",
+]
+
+[project.optional-dependencies]
+biomedclip = ["open_clip_torch>=2.24"]
+mirage = ["safetensors>=0.4", "huggingface_hub>=0.20"]
+medvit = ["natten>=0.17"]
+dev = ["pytest>=7", "ruff>=0.4", "black>=24"]
+all = [
+    "open_clip_torch>=2.24",
+    "safetensors>=0.4",
+    "huggingface_hub>=0.20",
+]
+
+[project.scripts]
+amd-oct = "amd_oct.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["amd_oct*"]
+
+[tool.setuptools.package-data]
+amd_oct = ["configs/**/*.yaml"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
