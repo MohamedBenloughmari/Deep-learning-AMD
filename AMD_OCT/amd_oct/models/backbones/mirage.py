@@ -1,6 +1,4 @@
 import sys
-from collections import OrderedDict
-from functools import partial
 from pathlib import Path
 from typing import List, Optional, Tuple
 
@@ -111,8 +109,8 @@ def build_mirage_base(
 def _load_mirage_weights(model: nn.Module) -> None:
     require_extra("safetensors", "mirage")
     require_extra("huggingface_hub", "mirage")
-    from safetensors.torch import load_file
     from huggingface_hub import hf_hub_download
+    from safetensors.torch import load_file
 
     sf_path = hf_hub_download(repo_id="j-morano/MIRAGE-Base", filename="model.safetensors")
     state_dict = load_file(sf_path)

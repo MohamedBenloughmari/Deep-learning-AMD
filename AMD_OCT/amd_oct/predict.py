@@ -1,9 +1,6 @@
 import os
-from typing import List, Optional
 
-import numpy as np
 import pandas as pd
-import torch
 from omegaconf import DictConfig
 
 from amd_oct.inference import gather_predictions

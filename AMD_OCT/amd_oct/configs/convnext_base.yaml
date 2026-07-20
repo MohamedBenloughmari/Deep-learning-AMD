@@ -1,0 +1,28 @@
+defaults:
+  - default
+  - override model: convnext_base_trimodal
+  - override loss: cross_entropy
+  - _self_
+
+run_name: convnext_base
+
+data:
+  image_size: 224
+  batch_size: 12
+  modality: trimodal
+
+model:
+  embed_dim: 768
+  use_layer_norm: true
+  tabular_encoder:
+    name: mlp
+  backbone:
+    pretrained: true
+    freeze: false
+    unfreeze_last: 2
+
+training:
+  epochs: 5
+  lr: 1.0e-4
+  weight_decay: 1.0e-2
+  monitor: score

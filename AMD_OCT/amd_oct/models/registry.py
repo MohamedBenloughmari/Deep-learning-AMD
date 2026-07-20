@@ -1,4 +1,3 @@
-from typing import Optional
 
 import torch.nn as nn
 from omegaconf import DictConfig

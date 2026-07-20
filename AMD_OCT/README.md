@@ -85,13 +85,13 @@ Datasets are downloaded with `kagglehub` (recommended) or reassembled from split
 
 ```bash
 # Option A: download from Kaggle via kagglehub
-amd-oct prepare-data --config-name=prepare source=kaggle out_dir=data/
+amd-oct prepare-data --config-name=default prepare.source=kaggle prepare.out_dir=data/
 
 # Option B: reassemble Task_2.zip.001/.002/... and extract
-amd-oct prepare-data source=zip parts_dir=data/ out_dir=data/
+amd-oct prepare-data --config-name=default prepare.source=zip prepare.parts_dir=data/ prepare.out_dir=data/
 
 # Optionally build a 10% subset for fast iteration
-amd-oct prepare-data source=subset src_dir=data/Task_2 out_dir=data_out10/Task_2 fraction=0.1
+amd-oct prepare-data --config-name=default prepare.source=subset prepare.src_dir=data/Task_2 prepare.out_dir=data_out10/Task_2 prepare.fraction=0.1
 ```
 
 This produces:

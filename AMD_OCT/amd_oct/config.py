@@ -2,7 +2,6 @@ from typing import Any, Dict
 
 from omegaconf import DictConfig, OmegaConf
 
-
 ORDINAL_LOSSES = {"corn", "coral"}
 
 

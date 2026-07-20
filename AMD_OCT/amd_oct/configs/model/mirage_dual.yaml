@@ -1,0 +1,14 @@
+name: mirage_dual
+embed_dim: 768
+d_model: 768
+dropout: 0.3
+use_layer_norm: false
+head_hidden: [256]
+disable_tabular: true
+backbone:
+  pretrained: true
+  freeze: true
+  input_size: 512
+  patch_size: 32
+  modalities: bscan-slo
+  repo_path: external/MIRAGE

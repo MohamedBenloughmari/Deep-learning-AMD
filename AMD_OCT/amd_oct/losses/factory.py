@@ -6,8 +6,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from omegaconf import DictConfig
 
-from amd_oct.losses.corn import CornLoss, corn_predict, corn_probabilities
 from amd_oct.losses.coral import CoralLoss, coral_predict, coral_probabilities
+from amd_oct.losses.corn import CornLoss, corn_predict, corn_probabilities
 from amd_oct.losses.focal import FocalLoss
 
 ORDINAL = {"corn", "coral"}

@@ -1,0 +1,41 @@
+defaults:
+  - default
+  - override model: mirage_dual
+  - override loss: cross_entropy
+  - _self_
+
+run_name: mirage_dual
+
+data:
+  modality: dual
+  image_size: 512
+  channels: 1
+  normalize: false
+  augment: true
+  hflip: 0.4
+  vflip: 0.0
+  rotation: 0.0
+  color_jitter: 0.2
+  batch_size: 4
+
+model:
+  embed_dim: 768
+  backbone:
+    freeze: true
+    input_size: 512
+    patch_size: 32
+    modalities: bscan-slo
+    repo_path: external/MIRAGE
+
+loss:
+  name: cross_entropy
+  class_weights: true
+
+training:
+  epochs: 30
+  lr: 1.0e-4
+  weight_decay: 1.0e-2
+  monitor: accuracy
+  scheduler:
+    name: cosine
+    step: batch

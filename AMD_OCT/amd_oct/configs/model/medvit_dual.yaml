@@ -1,0 +1,16 @@
+name: medvit_dual
+embed_dim: 512
+d_model: 512
+dropout: 0.4
+use_layer_norm: false
+head_hidden: [512, 256]
+disable_tabular: true
+backbone:
+  pretrained: false
+  freeze: false
+  repo_path: external/MedViTV2
+  weights_path: null
+  stem_chs: [64, 32, 64]
+  depths: [2, 2, 6, 2]
+  dims: [64, 128, 320, 512]
+  path_dropout: 0.2

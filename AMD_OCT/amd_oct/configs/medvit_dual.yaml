@@ -1,0 +1,43 @@
+defaults:
+  - default
+  - override model: medvit_dual
+  - override loss: focal
+  - _self_
+
+run_name: medvit_dual
+
+data:
+  modality: dual
+  image_size: 336
+  channels: 3
+  batch_size: 12
+  augment: true
+  hflip: 0.0
+  vflip: 0.0
+  rotation: 10.0
+  color_jitter: 0.1
+
+model:
+  embed_dim: 512
+  backbone:
+    pretrained: false
+    freeze: false
+    repo_path: external/MedViTV2
+    depths: [2, 2, 6, 2]
+    dims: [64, 128, 320, 512]
+    path_dropout: 0.2
+
+loss:
+  name: focal
+  gamma: 2.0
+  class_weights: false
+
+training:
+  epochs: 7
+  lr: 1.0e-4
+  weight_decay: 0.05
+  head_lr: 1.0e-3
+  monitor: qwk
+  scheduler:
+    name: none
+    step: epoch

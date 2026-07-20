@@ -1,0 +1,13 @@
+name: efficientnet_v2_s_trimodal
+embed_dim: 768
+d_model: 768
+dropout: 0.3
+use_layer_norm: false
+head_hidden: [1024, 512]
+backbone:
+  pretrained: true
+  freeze: false
+tabular_encoder:
+  name: mlp
+  dropout: 0.3
+  hidden: 256

@@ -1,12 +1,12 @@
 import os
-from typing import List, Optional, Tuple
+from typing import List
 
 import numpy as np
 import torch
 from omegaconf import DictConfig
 from tqdm import tqdm
 
-from amd_oct.inference import forward_model, gather_predictions
+from amd_oct.inference import forward_model
 from amd_oct.losses import build_loss, predict_classes, predict_probabilities
 from amd_oct.metrics import (
     composite_score,

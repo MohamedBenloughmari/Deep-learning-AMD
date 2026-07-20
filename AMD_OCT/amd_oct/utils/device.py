@@ -64,6 +64,7 @@ def set_cudnn(device: torch.device, benchmark: bool = True, deterministic: bool 
 def worker_init_seed(worker_id: int) -> None:
     """PyTorch DataLoader worker_init_fn for reproducible augmentation."""
     import random
+
     import numpy as np
 
     seed = (torch.initial_seed() + worker_id) % (2 ** 32)

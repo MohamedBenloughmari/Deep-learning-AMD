@@ -1,0 +1,4 @@
+name: focal
+gamma: 2.0
+class_weights: true
+label_smoothing: 0.0

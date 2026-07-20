@@ -1,7 +1,4 @@
-import os
-from typing import Optional
 
-import torch
 from omegaconf import DictConfig
 
 from amd_oct.train import evaluate_model
@@ -13,9 +10,9 @@ log = get_logger("amd_oct.evaluate")
 def evaluate_cli(cfg: DictConfig) -> dict:
     """Driver for ``amd-oct evaluate``. Loads a checkpoint and evaluates a split."""
     from amd_oct.data.loaders import build_dataloaders
+    from amd_oct.metrics import format_classification_report
     from amd_oct.models.registry import build_model
     from amd_oct.utils.checkpoint import load_checkpoint
-    from amd_oct.metrics import format_classification_report
 
     device = _device(cfg)
     n_classes = int(cfg.data.get("n_classes", 13))

@@ -1,0 +1,71 @@
+defaults:
+  - model: efficientnet_v2_s_trimodal
+  - loss: cross_entropy
+  - _self_
+
+seed: 42
+device: null
+deterministic: false
+run_name: run
+output_dir: outputs/${run_name}
+
+checkpoint: null
+split: test
+out: null
+
+data:
+  task_root: ${oc.env:AMD_OCT_DATA,data/Task_2}
+  csv:
+    train: null
+    val: null
+    test: null
+  n_classes: 13
+  modality: trimodal
+  image_size: 224
+  channels: 3
+  batch_size: 12
+  num_workers: 4
+  augment: true
+  normalize: true
+  hflip: 0.5
+  vflip: 0.5
+  rotation: 10.0
+  color_jitter: 0.3
+  augmix: false
+  weighted_sampler: true
+  pin_memory: true
+  drop_last: true
+  scale_numeric: false
+  drop_cols: [case, label, LOCALIZER, split_type, image]
+
+training:
+  epochs: 5
+  lr: 1.0e-4
+  weight_decay: 1.0e-2
+  head_lr: null
+  amp: false
+  monitor: score
+  scheduler:
+    name: cosine
+    step: epoch
+
+prepare:
+  source: kaggle
+  out_dir: data
+  dataset: mohabenloughmari/miccai-task2-full
+  parts_dir: data
+  zip_path: data/Task_2.zip
+  task_root: data/Task_2
+  src_dir: data/Task_2
+  fraction: 0.1
+  seed: 42
+  build_csvs: true
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: outputs/${run_name}/.hydra
+  sweep:
+    dir: multirun/${now:%Y-%m-%d_%H-%M-%S}
+    subdir: ${hydra.job.num}

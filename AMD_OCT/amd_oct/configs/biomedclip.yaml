@@ -1,0 +1,26 @@
+defaults:
+  - default
+  - override model: biomedclip_trimodal
+  - override loss: cross_entropy
+  - _self_
+
+run_name: biomedclip
+
+data:
+  image_size: 224
+  batch_size: 12
+  modality: trimodal
+
+model:
+  embed_dim: 768
+  tabular_encoder:
+    name: mlp
+  backbone:
+    pretrained: true
+    freeze: false
+
+training:
+  epochs: 5
+  lr: 1.0e-4
+  weight_decay: 1.0e-2
+  monitor: score
